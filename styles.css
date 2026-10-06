@@ -1,0 +1,156 @@
+/* Glanut Luxury Royal Blue & Gold E-Commerce Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+
+:root {
+  --glanut-blue: #0c2340;
+  --glanut-blue-dark: #071526;
+  --glanut-blue-light: #163b66;
+  --glanut-blue-royal: #1a4f8b;
+  --glanut-gold: #d4af37;
+  --glanut-gold-light: #f7e7b4;
+  --glanut-gold-dark: #aa8522;
+  --glanut-cream: #f6f8fc;
+  --glanut-sand: #edf2f9;
+  --glanut-dark: #0f172a;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1e293b;
+  background-color: var(--glanut-cream);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.font-serif-luxury {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-royal {
+  font-family: 'Cinzel', serif;
+}
+
+/* Luxury Gold & Royal Blue Gradients */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #dfb743 0%, #fae69e 50%, #c49925 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-gradient-text {
+  background: linear-gradient(135deg, #0c2340 0%, #1a4f8b 50%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #d4af37 0%, #f3df8a 50%, #b8860b 100%);
+}
+
+.blue-gradient-bg {
+  background: linear-gradient(145deg, #071526 0%, #0c2340 50%, #163b66 100%);
+}
+
+.blue-royal-gradient-bg {
+  background: linear-gradient(135deg, #0c2340 0%, #1a4f8b 100%);
+}
+
+.gold-border {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+.gold-glow-lg {
+  box-shadow: 0 10px 40px rgba(212, 175, 55, 0.35);
+}
+
+/* Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-btn {
+  background-size: 200% 100%;
+  background-image: linear-gradient(110deg, #d4af37 0%, #fff2b2 30%, #d4af37 60%, #b8860b 100%);
+  transition: all 0.3s ease;
+}
+
+.shimmer-btn:hover {
+  background-position: right center;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.45);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #0c2340;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Card hover transitions */
+.product-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(12, 35, 64, 0.15);
+}
+
+/* Tab active styling */
+.recipe-tab.active {
+  background: #0c2340;
+  color: #f7e7b4;
+  border-color: #d4af37;
+}
+
+/* Modal styles */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  background-color: rgba(7, 21, 38, 0.8);
+}
+
+/* Toast animation */
+@keyframes slideInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.toast-enter {
+  animation: slideInUp 0.4s ease-out forwards;
+}
