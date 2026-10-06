@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (totalSavingsDisplay) totalSavingsDisplay.textContent = `₹${data.savings.toLocaleString('en-IN')}`;
     if (mobilePriceDisplay) mobilePriceDisplay.textContent = `₹${data.price.toLocaleString('en-IN')}`;
 
-    // Update target Razorpay URL on Proceed to Order button
-    const targetUrl = bundlePricing[currentQty]?.link || bundlePricing[1].link;
+    // Update target checkout URL with selected quantity on Buy Now buttons
+    const checkoutUrl = `checkout.html?qty=${currentQty}`;
     const proceedBtn = document.getElementById('proceed-to-order-btn');
     if (proceedBtn) {
-      proceedBtn.href = targetUrl;
+      proceedBtn.href = checkoutUrl;
     }
     const mobileBtn = document.getElementById('mobile-order-btn');
     if (mobileBtn) {
-      mobileBtn.href = targetUrl;
+      mobileBtn.href = checkoutUrl;
     }
 
     // Update Bundle Cards active state
@@ -127,22 +127,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (recipientInput && previewRecipient) {
     recipientInput.addEventListener('input', (e) => {
-      previewRecipient.textContent = e.target.value.trim() ? `To: ${e.target.value}` : 'To: Dearest Family & Friends';
+      const val = e.target.value.trim();
+      previewRecipient.textContent = val ? `To: ${val}` : 'To: Dearest Family & Friends';
+      localStorage.setItem('glanut_card_recipient', val);
     });
   }
 
   if (messageInput && previewMessage) {
     messageInput.addEventListener('input', (e) => {
-      previewMessage.textContent = e.target.value.trim() 
-        ? `"${e.target.value}"` 
+      const val = e.target.value.trim();
+      previewMessage.textContent = val 
+        ? `"${val}"` 
         : '"Wishing you health, happiness, and prosperity in all the sweet moments ahead!"';
+      localStorage.setItem('glanut_card_message', val);
     });
   }
 
   quickWishes.forEach(btn => {
     btn.addEventListener('click', () => {
       const msg = btn.getAttribute('data-wish');
-      if (messageInput) messageInput.value = msg;
+      if (messageInput) {
+        messageInput.value = msg;
+        localStorage.setItem('glanut_card_message', msg);
+      }
       if (previewMessage) previewMessage.textContent = `"${msg}"`;
     });
   });
