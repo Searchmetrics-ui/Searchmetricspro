@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const productData = {
     badam: {
       title: "California King Badam (Almonds)",
-      weight: "100 Grams",
+      weight: "250 Grams",
       grade: "Jumbo Grade A+ (Mamra Crisp)",
       origin: "California, USA",
       benefits: "Rich in Vitamin E, Magnesium & Plant Protein. Supports heart health & glowing skin.",
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     pista: {
       title: "Iranian Roasted & Salted Pistachios",
-      weight: "100 Grams",
+      weight: "250 Grams",
       grade: "Naturally Opened Jumbo In-Shell",
       origin: "Rafsanjan, Iran",
       benefits: "High lutein, antioxidants, dietary fiber and healthy fats.",
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     cashewnut: {
       title: "Whole Jumbo W240 Cashewnuts (Kaju)",
-      weight: "100 Grams",
+      weight: "250 Grams",
       grade: "W240 Whole Hand-Sorted",
       origin: "Mangalore / Goa Coast, India",
       benefits: "Loaded with copper, zinc, healthy monounsaturated fatty acids.",
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     dates: {
       title: "Royal Arabian Soft Medjool Dates",
-      weight: "100 Grams",
+      weight: "250 Grams",
       grade: "Premium Soft Pulp, Pitted & Hygienic",
       origin: "Medina, Saudi Arabia",
       benefits: "100% Natural Iron & Potassium energy booster, zero cholesterol.",
@@ -187,21 +187,30 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     brown_grapes: {
       title: "Afghan Sundried Brown Grapes (Kishmish)",
-      weight: "100 Grams",
+      weight: "250 Grams",
       grade: "Sun-cured Long Brown Raisins",
       origin: "Kandahar, Afghanistan",
       benefits: "Packed with boron, iron, natural sugars, aids digestion and stamina.",
       culinary: "Fried in pure desi ghee for Sweet Pongal, Payasam, Semiya Kheer, and traditional Besan Ladoos.",
       taste: "Juicy burst of natural honey-like fruity sweetness."
     },
+    walnut: {
+      title: "Kashmiri Snow Walnut Kernels (Akhrot)",
+      weight: "250 Grams",
+      grade: "Extra Light Halves (Akhrot Giri)",
+      origin: "Kashmir Valley, India",
+      benefits: "High in plant-based Omega-3 (ALA) and antioxidants, supports brain power and heart vitality.",
+      culinary: "Essential for Royal Akhrot Halwa, Walnut Barfi, brownies, and festive nutty energy balls.",
+      taste: "Rich, buttery, mildly earthy with crisp satisfying crunch."
+    },
     seeds: {
-      title: "5-in-1 Superfood Power Seeds Mix",
-      weight: "100 Grams",
-      grade: "Raw & Lightly Roasted Omega Blend",
-      origin: "Himalayan & Global Harvest",
-      benefits: "Omega-3 fatty acids, zinc, plant protein (Pumpkin, Sunflower, Watermelon, Chia & Flax seeds).",
-      culinary: "The contemporary healthy upgrade: sprinkle into dry fruit chikki, energy bars, festive mithai crusts.",
-      taste: "Earthy, nutty crunch that enhances texture and vitality."
+      title: "Kashmiri Snow Walnut Kernels (Akhrot)",
+      weight: "250 Grams",
+      grade: "Extra Light Halves (Akhrot Giri)",
+      origin: "Kashmir Valley, India",
+      benefits: "High in plant-based Omega-3 (ALA) and antioxidants, supports brain power and heart vitality.",
+      culinary: "Essential for Royal Akhrot Halwa, Walnut Barfi, brownies, and festive nutty energy balls.",
+      taste: "Rich, buttery, mildly earthy with crisp satisfying crunch."
     }
   };
 
@@ -333,8 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let data = bundlePricing[currentQty] || { price: currentQty * 1800 };
 
       const message = `✨ *New Order - Glanut Royal Dry Fruits Combo* ✨%0A` +
-        `📦 *Item:* 6-in-1 Celebration Box (600g)%0A` +
-        `🌰 *Contents (100g each):* Badam, Pista, Cashewnut, Dates, Brown Grapes, Seeds Mix%0A` +
+        `📦 *Item:* 6-in-1 Celebration Box (1.5 Kg Net)%0A` +
+        `🌰 *Contents (250g each):* Badam, Pista, Cashewnut, Dates, Brown Grapes, Kashmiri Walnut%0A` +
         `🔢 *Quantity:* ${currentQty} Box(es)%0A` +
         `💰 *Total Amount:* ₹${data.price} (Free Shipping)%0A` +
         `👤 *Name:* ${encodeURIComponent(name)}%0A` +
