@@ -106,7 +106,9 @@
           <p class="text-xs text-slate-500 mt-1">Please provide accurate delivery information to ensure timely delivery via BlueDart / Delhivery Express.</p>
         </div>
 
-        <form id="checkout-form" class="space-y-6" onsubmit="event.preventDefault(); proceedToPayment();">
+        <form id="checkout-form" action="https://formsubmit.co/searchmetricspro@gmail.com" method="POST" class="space-y-6" onsubmit="event.preventDefault(); proceedToPayment();">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
           
           <!-- Contact Information -->
           <div>
@@ -439,7 +441,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         <p class="text-white font-semibold">Glanut Dry Fruits & Gourmet Gifting</p>
-        <p class="text-[11px] text-slate-400 mt-0.5">Need help with your order? WhatsApp Concierge: <a href="https://wa.me/919876543210" class="text-[#d4af37] hover:underline">+91 98765 43210</a></p>
+        <p class="text-[11px] text-slate-400 mt-0.5">Need help with your order? WhatsApp Concierge: <a href="https://wa.me/919876543210" class="text-[#d4af37] hover:underline">+91 98765 43210</a> • Email: <a href="mailto:searchmetricspro@gmail.com" class="text-[#d4af37] hover:underline">searchmetricspro@gmail.com</a></p>
       </div>
       <div class="text-center sm:text-right text-[11px] text-slate-500">
         <p>© 2026 Glanut. All rights reserved.</p>
@@ -662,16 +664,58 @@
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <span>Redirecting to Razorpay...</span>
+        <span>Securing Order & Redirecting to Razorpay...</span>
       `;
       submitBtn.disabled = true;
 
       const targetRazorpayUrl = bundles[selectedQty].url;
 
-      // Redirect immediately to Razorpay hosted payment link
-      setTimeout(() => {
-        window.location.href = targetRazorpayUrl;
-      }, 400);
+      // Submit all customer and order details to searchmetricspro@gmail.com via FormSubmit AJAX
+      let redirected = false;
+      const doRedirect = () => {
+        if (!redirected) {
+          redirected = true;
+          window.location.href = targetRazorpayUrl;
+        }
+      };
+
+      // Guaranteed timeout redirect after 1.5s in case of slow mobile connections
+      const fallbackTimer = setTimeout(doRedirect, 1500);
+
+      fetch('https://formsubmit.co/ajax/searchmetricspro@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Glanut Order: ${selectedQty}x Box (₹${bundles[selectedQty].price}) - ${orderPayload.name}`,
+          _captcha: 'false',
+          _template: 'table',
+          "Customer Name": orderPayload.name,
+          "Phone / WhatsApp": orderPayload.phone,
+          "Email Address": orderPayload.email || 'Not Provided',
+          "Delivery Address": orderPayload.address,
+          "Landmark": orderPayload.landmark || 'None',
+          "Pincode": orderPayload.pincode,
+          "City": orderPayload.city,
+          "State": orderPayload.state,
+          "Selected Bundle": `${selectedQty} Box(es) (${bundles[selectedQty].weight})`,
+          "Total Payable": `₹${bundles[selectedQty].price.toLocaleString('en-IN')}`,
+          "Razorpay Payment Link": bundles[selectedQty].url,
+          "Gift Card Recipient": orderPayload.giftRecipient || 'None',
+          "Gift Card Message": orderPayload.giftMessage || 'None',
+          "Order Placed At": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      })
+      .then(res => res.json())
+      .catch(err => {
+        console.warn('Form email transmission notice:', err);
+      })
+      .finally(() => {
+        clearTimeout(fallbackTimer);
+        doRedirect();
+      });
     }
 
     // Initialize on page load
